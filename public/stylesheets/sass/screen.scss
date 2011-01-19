@@ -1,0 +1,120 @@
+//** SCREEN STYLES **//
+
+// Imports --------------------------------------------------------------
+
+@import "defaults";
+
+/* Layout -------------------------------------------------------------- */
+
+@include susy;
+
+// change '.container' to match your HTML container element
+// or @extend it to apply multiple containers on your site.
+.container {
+  @include container;
+  //@include show-grid("/images/grid.png"); 
+}
+
+// show-grid loads a 64+16x24 grid image by default
+// For other grid settings, run `compass grid-img 30+10x20`
+// Where 30 is the column width, 10 is the gutter width,
+// and 20 is the (optional) line-height.
+
+/* Styles -------------------------------------------------------------- */
+#page, #main-header, #main-footer {
+	@extend .container;	
+}
+
+#main-header {	
+	@include full(12);
+	h1 {
+		@include columns(3);
+		@include alpha;
+		@include adjust-font-size-to(32px);
+		@include leader(1,32px);
+		@include serif-family('JosefinSlabBold');
+		text-align: center;
+	}
+	nav#user-nav {
+     @include columns(9);
+     @include omega;
+	  text-align: right;
+		#avatarname {
+			display: inline;
+			padding-right: .5em;
+			img {
+				border: 1px solid #FFF;
+				vertical-align: bottom;
+			}			
+		}	
+	  ul {
+	    @include no-bullets;
+			display: inline; 
+			margin: 0;	
+			li {
+				display: inline;
+			}
+	  }
+	}
+}
+
+#main-nav {
+  @include columns(3);
+  @include alpha;
+	@include trailer(1);
+  ul {
+    @include no-bullets;
+  }
+}
+#content {
+  @include columns(9);
+  @include omega;
+	@include trailer(1);
+	#main {
+		@include full(9);
+	}
+}
+
+#main-footer {
+	@include full(12);
+	border-top: 1px solid;
+	#fineprint {
+		@include leader(1 * 0.25);
+    @include columns(6);
+    @include alpha;
+	}
+	.grid-controls {
+		@include leader(1 * 0.25);
+    @include columns(6);
+    @include omega;
+		text-align: right;
+	}
+}	
+
+#page * {
+  //background-color: rgba(0,0,0,.125);
+}
+#page:not(:target) .grid-controls, 
+#page:target .grid-controls {
+  display: block;
+}
+#page:not(:target) .grid-controls a[href="#"]:link, 
+#page:not(:target) .grid-controls a[href="#"]:visited {
+  display: none;
+}
+#page:target {
+	@include show-grid("/images/grid.png");
+}
+#page:target a[href="#page"]:link, 
+#page:target a[href="#page"]:visited {
+  display: none;
+}
+#page:target a[href="#"]:link, 
+#page:target a[href="#"]:visited {
+  display: block;
+}
+
+a.logo {
+	color: $base;
+	text-decoration: none;
+}
